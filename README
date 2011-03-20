@@ -1,0 +1,48 @@
+KINECT PS3
+
+Intro
+====
+Kinect PS3 is a program that allows using a Microsoft Kinect, an XBOX360 accessory, as an input controller for the Sony Playstation 3. This has been developed by me, Shantanu Goel (Reach me at http://tech.shantanugoel.com/ or http://twitter.com/shantanugoel) and distributed under GNU GPL v2 License. Currently it has been coded/compiled on/for Linux. It should be fairly straight forward to port it to other operating systems though. Please let me know at shantanu AT shantanugoel DOT com if you would like to contribute efforts towards the same or comment here: http://tech.shantanugoel.com/2011/03/20/making-kinect-work-with-ps3.html (Bonus points: This link also has a video of the whole thing in action, browsing PS3 menus and playing killzone 3)
+
+Please note that this is pre-alpha quality software currently. I haven't updated to a lot of recent code for the below libraries and also haven't done most of the performance/feature improvements yet. The axis performance specially needs lot of tweaking and it works well only while sitting. Putting this out purely as a proof of concept. For the things that I plan to add soon, please see the Todo section below.
+
+The program makes use of several other programs in order to provide this functionality. To compile/use it, you also need the following programs:
+1. OpenNI Libraries (https://github.com/OpenNI/OpenNI.git)
+2. NITE Libraries (http://www.openni.org/downloadfiles/openni-compliant-middleware-binaries/)
+3. PrimeSense Libraries for kinect (https://github.com/boilerbots/Sensor.git)
+4. DIYPS3Controller (http://code.google.com/p/diyps3controller/)
+
+You also require the following hardware:
+1. A PC with Linux
+2. A Bluetooth dongle
+
+Installation/Compilation/Usage
+====
+1. Make sure that the above 4 things are installed on your machine and working fine.
+2. Download the source of this project to the NITE Samples directory. You can even place it anywhere else but you would need to tweak the makefile to account for the changed paths.
+3. Make any changes to the source that you need. 
+4. Change the included ps3 controller config xml file and place it in one of the locations where diyps3controller can find it.
+5. Run make -f kinect-ps3.mak
+6. The executable will be available in Samples/Bin directory of NITE. 
+7. Run kinect-ps3 (without any arguments)
+8. Run emuclient (from ps3 controller software) and choose the new xml config file
+9. "Become the controller" :)
+
+Default Config:
+====
+Menu Profile - This is the default profile that kinect-ps3 starts with and allows to operate the PS3 menus. Moving hand in any direction will move the ps3 menus as if you were using the DPAD with those directions keys pressed. If you run out of the kinect's watched space, then just do a backward push with your hand, bring your hand to center and then again do the backward push and continue scrolling. This is like you lift your finger up and then start dragging from edges of a laptop's touchpad.
+For selecting any item, make two successive push movements with your hand without changing any x-y direction.
+
+Game Profile - This profile can be switched to by doing 3 successive backward movements of the hand while in Menu profile. Right now I've implemented only directional controls in game profile because I'm still struggling with multiple hands detections and skeletal tracking. A full profile will be activated soon enough. Currently, the your hand's x/y movements and directly translated to right stick x/y movements (e.g. this is looking in different directions in various FPS games). Moving the hand towards or away from kinect (z-axis) translate to left stick y movements (e.g. this is moving fowards or backwards in most FPS games).
+
+Issues/Queries/Suggestions
+====
+Please direct them to me by contacting me through my site http://tech.shantanugoel.com/ or tweeting to me at http://twitter.com/shantanugoel or emailing me at shantanu AT shantanugoel DOT com
+
+Coming Soon/ToDo
+====
+- Full Menu and Game profiles
+- Skeletal tracking for better game profiles
+- Switching back to menu profiles from game profiles
+- Easier way to specify user custom profiles instead of changing code for the same
+- Performance improvement for game profiles
